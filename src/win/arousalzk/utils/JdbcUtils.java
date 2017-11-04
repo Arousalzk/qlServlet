@@ -39,9 +39,10 @@ public class JdbcUtils {
         return Holder.SINSTANCE;
     }
     
-    public Connection getConnection()  {
-        
-        if(null == conn) {
+    public Connection getConnection() throws SQLException  {
+        //添加对连接关闭时候的处理，默认八小时无操作连接就会自己close的。
+        //TODO: 用连接池来维护JDBC连接……或者直接用框架……
+        if(null == conn || conn.isClosed()) {
             try {
                 initConnection();
             } catch (ClassNotFoundException e) {

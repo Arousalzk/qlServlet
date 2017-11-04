@@ -20,8 +20,8 @@ public class UserDaoImpl implements IUserDao {
 
     @Override
     public User login(User user) throws SQLException {
-        
-        Connection conn = JdbcUtils.getJdbcUtils().getConnection();
+        JdbcUtils jdbcUtils = JdbcUtils.getJdbcUtils();
+        Connection conn = jdbcUtils.getConnection();
         //添加binary让其大小写敏感
         String sql = "select * from userinfo where binary username=? and binary password=?;";
         PreparedStatement preparedStatement = conn.prepareStatement(sql);
@@ -35,6 +35,7 @@ public class UserDaoImpl implements IUserDao {
             System.out.println(rs.getString("username"));
             return user;
         }
+        jdbcUtils.release(conn, preparedStatement, rs);
         System.out.println("........没这个用户");
         return null;
     }
