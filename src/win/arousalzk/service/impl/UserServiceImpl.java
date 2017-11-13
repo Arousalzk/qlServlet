@@ -22,4 +22,12 @@ public class UserServiceImpl implements IUserService {
         return userDaoImpl.login(user);
     }
 
+    @Override
+    public User register(User user) throws SQLException {
+        
+        
+        IUserDao userDaoImpl = new UserDaoImpl();
+        return userDaoImpl.register(user);
+    }
+
 }

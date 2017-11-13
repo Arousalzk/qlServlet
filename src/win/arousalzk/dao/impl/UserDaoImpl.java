@@ -40,4 +40,18 @@ public class UserDaoImpl implements IUserDao {
         return null;
     }
 
+    @Override
+    public User register(User user) throws SQLException {
+        JdbcUtils jdbcUtils = JdbcUtils.getJdbcUtils();
+        Connection conn = jdbcUtils.getConnection();
+        String sqlString = "insert into userinfo (username, password) values (?,?);";
+        PreparedStatement preparedStatement = conn.prepareStatement(sqlString);
+        preparedStatement.setString(1, user.getUsername());
+        preparedStatement.setString(2, user.getPassword());
+        if(0!=preparedStatement.executeUpdate()) {
+            return user;
+        }
+        return null;
+    }
+
 }

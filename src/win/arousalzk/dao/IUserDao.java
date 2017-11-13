@@ -19,4 +19,12 @@ public interface IUserDao {
      * @throws SQLException 
      */
     User login(User user) throws SQLException;
+    
+    /**
+     * 用户注册
+     * @param user 业务层传来的要注册的用户实体
+     * @return 返回注册成功的实体，如果已经存在返回null
+     * @throws SQLException 
+     */
+    User register(User user) throws SQLException;
 }

@@ -100,7 +100,11 @@ public class LoginServlet extends HttpServlet {
             servletContext.setAttribute("currUser", user);
             */
             if(null == currUser) {
-                response.getWriter().println("Login failed");
+                //没找到
+//                response.getWriter().println("Login failed");
+                request.setAttribute("logininfo", "用户名或密码错误");
+                request.getRequestDispatcher("/login.jsp").forward(request, response);
+                
             }else {
                 int count =(int) getServletContext().getAttribute("count");
                 //setContentType避免中文乱码
@@ -112,7 +116,7 @@ public class LoginServlet extends HttpServlet {
             e.printStackTrace();
         }
 	}
-
+    
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
