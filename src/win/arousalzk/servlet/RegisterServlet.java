@@ -36,7 +36,7 @@ public class RegisterServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	    request.setCharacterEncoding("UTF-8");
 	    //获取用户名密码
-	    String userName = request.getParameter("username");
+	    String userName = new String(request.getParameter("username").getBytes("ISO8859-1"));
 	    String password = request.getParameter("userpassword");
 
 	    User user = new User();
