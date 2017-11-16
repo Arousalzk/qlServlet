@@ -35,6 +35,14 @@ public class RegisterServlet extends HttpServlet {
     @Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	    request.setCharacterEncoding("UTF-8");
+	    String sessionCheckword = (String) request.getSession().getAttribute("checkword");
+        String userCheckWord = request.getParameter("checkcode");
+        if(null==sessionCheckword || !userCheckWord.equals(sessionCheckword)) {
+            request.setAttribute("logininfo", "验证码错误");
+            request.getRequestDispatcher("/login.jsp").forward(request, response);
+            return;
+        }
+	    
 	    //获取用户名密码
 	    String userName = new String(request.getParameter("username").getBytes("ISO8859-1"));
 	    String password = request.getParameter("userpassword");

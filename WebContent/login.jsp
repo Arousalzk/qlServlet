@@ -20,6 +20,15 @@
             <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
         <![endif]-->
 
+
+<script type="text/javascript">
+    function changeImg(obj){
+        obj.src="/qlServlet/checkImg?time="+new Date().getTime();
+    }
+
+    
+</script>
+
 </head>
 
 <body>
@@ -33,6 +42,13 @@
 			<input type="text" name="username" class="username" placeholder="用户名">
 			<input type="password" name="userpassword" class="password"
 				placeholder="密码">
+			<!--  
+			<input type="text" class="checkCode" name="checkCode"
+                            placeholder=<%=session.getAttribute("checkword") %>>
+            -->
+            <input type="text" class="checkcode" name="checkcode"
+                 placeholder="请输入验证码">
+            <img src="/qlServlet/checkImg" onclick="changeImg(this)"/>
 			<button type="submit">登陆</button>
 			<button type="submit" onclick="this.form.action='register'">注册</button>
 			<div class="error">

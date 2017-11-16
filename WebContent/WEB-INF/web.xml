@@ -39,4 +39,14 @@
     <servlet-name>RegisterServlet</servlet-name>
     <url-pattern>/register</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description>验证码</description>
+    <display-name>CheckImgServlet</display-name>
+    <servlet-name>CheckImgServlet</servlet-name>
+    <servlet-class>win.arousalzk.servlet.CheckImgServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>CheckImgServlet</servlet-name>
+    <url-pattern>/checkImg</url-pattern>
+  </servlet-mapping>
 </web-app>
